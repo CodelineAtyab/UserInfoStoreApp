@@ -1,0 +1,5 @@
+com\docker\rihal\repositories\UserRepository.class
+com\docker\rihal\services\UserService.class
+com\docker\rihal\controllers\UserController.class
+com\docker\rihal\RihalApplication.class
+com\docker\rihal\models\User.class
