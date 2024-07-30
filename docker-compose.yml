@@ -4,34 +4,35 @@ services:
   mysql:
     image: mysql
     container_name: mysql
-    environment:
+    environment:  # Set environment variables for MySQL
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: usersystem
       MYSQL_PASSWORD: root
       MYSQL_TCP_PORT: 3307
     ports:
-      - "3307:3307"
+      - "3307:3307"  # port 3307 on the host to port 3307 on the container
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
       - demo-network
 
   springboot:
-    build: .
+    build: .  # Build the Spring Boot application
     container_name: springboot
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3307/usersystem?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    environment:  # Set environment variables for the Spring Boot application
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3307/usersystem?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true  # JDBC URL for the MySQL database
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_SHOW_SQL: "true"
     ports:
-      - "8080:8080"
+      - "8080:8080"  # port 8080 on the host to port 8080 on the container
     depends_on:
       - mysql
     networks:
-      - demo-network
-    restart: on-failure
+      - demo-network 
+    restart: on-failure  # Restart the container if it fails
+
 networks:
   demo-network:
 
