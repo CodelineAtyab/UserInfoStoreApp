@@ -1,4 +1,4 @@
-# Use the maven app to build the image 
+# Use the Maven image to build the application
 FROM maven:3.8.1-openjdk-17 AS build
 
 # Set the working directory inside the container
@@ -12,8 +12,8 @@ RUN mvn dependency:go-offline -B
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-# Install the OpenJDK17 
-FROM openjdk:17-jdk-slim
+# Use the Maven image as the runtime image
+FROM maven:3.8.1-openjdk-17
 
 WORKDIR /app
 
