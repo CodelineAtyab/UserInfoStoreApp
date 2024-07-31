@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:9.0.0
+    container_name: mysql-cont
+    ports:
+      - "3307:3307"
+    environment:
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_PASSWORD
+      - MYSQL_TCP_PORT
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - my_network
+    restart: on-failure
+
+  userapp:
+    build: .
+    image: userinfostoreapp-userapp
+    container_name: userapp-cont
+    ports: 
+      - 8080:8080
+    environment:
+      - SPRING_DATASOURCE_URL
+      - SPRING_DATASOURCE_USERNAME
+      - SPRING_DATASOURCE_PASSWORD
+      - SPRING_JPA_HIBERNATE_DDL_AUTO
+      - SPRING_JPA_SHOW_SQL
+    depends_on:
+      - mysql
+    networks:
+      - my_network
+    restart: on-failure
+
+volumes:
+ mysql_data:
+
+networks:
+  my_network: {}
+
+
+
