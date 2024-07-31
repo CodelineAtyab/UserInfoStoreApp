@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  database:
+    image: mysql:8.0.32
+    container_name: userinfostoreapp-mysql
+    ports:
+      - "3308:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  application:
+    build: .
+    container_name: userinfostoreapp-app
+    ports:
+      - "8081:8080"
+    env_file:
+      - .env
+    depends_on:
+      - database
+    volumes:
+      - ./logs:/app/logs
+
+volumes:
+  mysql_data:
