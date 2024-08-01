@@ -1,0 +1,5 @@
+/home/f6ew/UserInfoStoreApp/src/main/java/com/docker/rihal/RihalApplication.java
+/home/f6ew/UserInfoStoreApp/src/main/java/com/docker/rihal/controllers/UserController.java
+/home/f6ew/UserInfoStoreApp/src/main/java/com/docker/rihal/models/User.java
+/home/f6ew/UserInfoStoreApp/src/main/java/com/docker/rihal/repositories/UserRepository.java
+/home/f6ew/UserInfoStoreApp/src/main/java/com/docker/rihal/services/UserService.java
