@@ -1,0 +1,39 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: my_sql_container
+    environment:
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_PASSWORD
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - default
+    restart: always
+
+  app:
+    build: .
+    container_name: app_container
+    environment:
+      - SPRING_DATASOURCE_URL
+      - SPRING_DATASOURCE_USERNAME
+      - SPRING_DATASOURCE_PASSWORD
+      - SPRING_JPA_HIBERNATE_DDL_AUTO
+      - SPRING_JPA_SHOW_SQL
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - default
+    restart: always
+          
+volumes:
+  mysql_data: 
+
+networks:
+  default:
+    driver: bridge

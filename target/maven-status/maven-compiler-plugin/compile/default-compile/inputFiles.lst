@@ -1,0 +1,5 @@
+/app/src/main/java/com/docker/rihal/RihalApplication.java
+/app/src/main/java/com/docker/rihal/controllers/UserController.java
+/app/src/main/java/com/docker/rihal/models/User.java
+/app/src/main/java/com/docker/rihal/repositories/UserRepository.java
+/app/src/main/java/com/docker/rihal/services/UserService.java
